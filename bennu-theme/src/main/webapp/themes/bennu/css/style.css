@@ -1,6 +1,6 @@
 @import url("bootstrap.css");
 @import url("bootstrap-responsive.css");
 
-body{
-	margin-top: 60px;
+#content{
+	margin-top: 40px;
 }
