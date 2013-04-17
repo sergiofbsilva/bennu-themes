@@ -1,0 +1,73 @@
+<div id="container">
+	<div id="header">
+		<div id="logo">
+			<img src="data:{{logoType}};base64,{{logo}}">
+			<div id="text">
+				<h1>{{#_mls}}applicationTitle{{/_mls}}</h1>
+				<p>{{#_mls}}applicationSubTitle{{/_mls}}</p>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div id="supportnav">
+		<div id="login" class="login">
+		{{^logged}}
+			{{^casEnabled}}
+			<span>Utilizador: <input type="text" name="username" size="10"></span>
+			<span>Password: <input type="password" name="password" size="10"></span>
+			<button id='submit-login' class='inputbuttonlogin"'>Login</button>
+			{{/casEnabled}}
+			{{#casEnabled}}
+				<a href='{{loginUrl}}'>Login</a>
+			{{/casEnabled}}
+		{{/logged}}
+		{{#logged}}
+			<a href="#">Configuração</a> |
+			<div id="login" class="login">
+				Utilizador: {{username}} | 
+				{{#casEnabled}}
+					<button class='btn' id='logout' href='{{logoutUrl}}'>Sair</button>
+				{{/casEnabled}}
+				{{^casEnabled}}
+					<button class='btn' id='logout' href='api/bennu-core/profile/logout'>Sair</button>
+				{{/casEnabled}}
+			</div>
+		{{/logged}}
+		</div>
+		<div id="headerforms">
+		{{#locales}}
+			{{#selected}}			
+				{{tag}}
+			{{/selected}}
+			{{^selected}}
+				<a class="lang" href="#">{{tag}}</a>
+			{{/selected}}
+		{{/locales}}
+		</div>
+	</div>
+	<div id="mainnav">
+		<ul class="mainnav">
+			{{#menu}}
+			<li>
+				<a href="{{path}}" alt="{{#_mls}}description{{/_mls}}"><span>{{#_mls}}title{{/_mls}}</span></a>
+			</li> 
+			{{/menu}}
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<div id="container2">
+		<div id="secondarynav"></div>
+		<div id="container3">
+			<div id="content"></div>
+			<div id="footer">
+				<div class="c1"></div>
+				<div class="c2"></div>
+				<div class="c3"></div>
+				<div class="c4"></div>
+				<p>{{#_mls}}applicationCopyright{{/_mls}}</p>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="themes/dot/js/language.js"></script>
+<script src="themes/dot/js/login.js"></script>

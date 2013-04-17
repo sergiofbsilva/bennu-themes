@@ -1,29 +1,62 @@
 <div class="navbar navbar-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="#">{{#_mls}}applicationTitle{{/_mls}}</a>
-            <div class="nav-collapse">
-                <ul class="nav">
-                	{{#menu}}
-                    <li>
-                    <a href="{{path}}">{{#_mls}}title{{/_mls}} - {{#_mls}}description{{/_mls}}</a>
-                    </li>
-                    {{/menu}}
-                </ul>
-            </div>
-        </div>
-    </div>
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">{{#_mls}}applicationTitle{{/_mls}}</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					{{#menu}}
+					<li><a href="{{path}}">{{#_mls}}title{{/_mls}} -
+							{{#_mls}}description{{/_mls}}</a></li> {{/menu}}
+					<li class="pull-right">
+						<div class="btn-group">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								{{locale.tag}} <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								{{#locales}}
+								<li class="lang"><a href="#">{{tag}}</a></li>
+								{{/locales}}
+							</ul>
+						</div>
+					</li>
+					<li class="login">
+						{{^logged}}
+							{{^casEnabled}}
+								<input type='text' name='username' placeholder='Username'/>
+								<input type='password' name='password' placeholder='Password'/>
+								<button id='submit-form' class='btn'>Login</button>
+							{{/casEnabled}}
+							{{#casEnabled}}
+								<a href='{{loginUrl}}'>Login</a>
+							{{/casEnabled}}
+						{{/logged}}
+						{{#logged}}
+							<span>{{name}}</span>
+							{{#casEnabled}}
+								<button class='btn' id='logout' href='{{logoutUrl}}'>Logout</button>
+							{{/casEnabled}}
+							{{^casEnabled}}
+								<button class='btn' id='logout' href='api/bennu-core/profile/logout'>Logout</button>
+							{{/casEnabled}}
+						{{/logged}}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div id="content">
-</div>
+<div id="content"></div>
 
 <div class="container">
-    <hr/>
-    <footer>
-		<p>{{#_mls}}applicationSubTitle{{/_mls}} - {{#_mls}}applicationCopyright{{/_mls}}</p>
+	<hr />
+	<footer>
+		<p>{{#_mls}}applicationSubTitle{{/_mls}} -
+			{{#_mls}}applicationCopyright{{/_mls}}</p>
 		<p>{{#_mls}}supportEmailAddress{{/_mls}}</p>
-    </footer>
+	</footer>
 </div>
 
-<script src="/themes/bennu/js/bootstrap.min.js"></script>
+<script src="themes/bennu/js/bootstrap.min.js"></script>
+<script src="themes/bennu/js/language.js"></script>
+<script src="themes/bennu/js/login.js"></script>
