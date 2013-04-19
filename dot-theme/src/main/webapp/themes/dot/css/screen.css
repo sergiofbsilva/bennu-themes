@@ -1,4 +1,2 @@
-@import url("theme_test.css");
-
-@import url("jqTheme/ui.all.css");
-@import url("jquery.alerts.css");
+@import url("/xpto/less/style.less");
+@import url("theme_bootstrap.less");
