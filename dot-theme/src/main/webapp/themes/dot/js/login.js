@@ -1,6 +1,6 @@
 (function() {
 	$("#logout").click(function() {
-		$.getJSON(logoutUrl,null,function() {
+		$.getJSON($("#logout").attr("href"),null,function() {
 			location.reload();
 		});
 	});
