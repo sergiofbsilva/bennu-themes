@@ -1,0 +1,116 @@
+@import "bootstrap.less";
+
+@import "dot-variables.less"; // Let's define the DOT theme variables
+
+body {
+	background: @pageBackground;
+	font-family: @fontFamily;
+	color: @pageColor;
+	font-size: @fontSize;
+}
+
+.roundBottomCorners(@radius: 5px) {
+	-moz-border-radius-bottomleft: @radius;
+	-moz-border-radius-bottomright: @radius;
+	-webkit-border-bottom-left-radius: @radius;
+	-webkit-border-bottom-right-radius: @radius;
+}
+
+.roundTopCorners(@radius: 5px) {
+	-moz-border-radius-topleft: @radius;
+	-moz-border-radius-topright: @radius;
+	-webkit-border-top-left-radius: @radius;
+	-webkit-border-top-right-radius: @radius;
+}
+
+#content {
+	background-color: @contentBackgroundColor;
+	.roundBottomCorners(@contentRadiusBottom);
+}
+
+#header {
+	background: @headerBackgroundColor;
+/* 	border-top: 10px solid #555; */
+	.roundTopCorners(@headerRadiusTop);
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#logo {
+	padding-left: 10px;
+	padding-right: 10px;
+	float:left;
+}
+
+#text #title {
+	font-size: @titleFontSize;
+	color: @titleFontColor;
+	font-weight: @titleFontWeight;
+	margin-bottom: 5px;
+}
+
+#text #subtitle {
+	font-size: @subtitleFontSize;
+	color: @subtitleFontColor;
+}
+
+
+#login {
+	color: @loginFontColor;
+}
+
+#login input {
+	font-size: @loginInputFontSize;
+}
+
+#language {
+	color: @languageFontColor;
+}
+
+#nav {
+	background: @tabBackgroundColor;
+	padding: 0px 20px;
+}
+
+#nav .nav-tabs > li > a {
+	background-color: @menuBackgroundColor;
+	color: @menuFontColor;
+}
+
+#nav .nav-tabs > li > a:hover {
+	border:1px solid transparent;
+}
+
+#nav .nav-tabs {
+	border-bottom: 1px solid transparent;
+	margin-bottom: 0px;
+}
+
+#nav .nav-tabs > li {
+	margin-top: 2px;
+}
+
+#subnav {
+	background-color: @subMenuBackgroundColor;
+	padding: 0px 20px;
+}
+
+#subnav .nav {
+	margin-bottom:0px;
+}
+
+#subnav a:hover {
+	background-color: @subMenuBackgroundHoverColor;
+	color: @subMenuFontHoverColor;
+}
+
+#footer {
+	color: @footerFontColor;
+	text-align: center;
+	margin: 20px 0px;
+}
+
+a {
+	color: @linkFontColor;
+	text-decoration: none;
+}
