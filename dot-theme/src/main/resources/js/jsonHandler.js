@@ -22,19 +22,5 @@ function jsonHandler(hostJson) {
 	
 	var path = location.href.replace(location.href.substring(0, location.href.indexOf(contextPath) + contextPath.length + 1), "");
 	var menus = new Array();
-	$(a.menu).each(function(i,menu){
-		menus.push(menu);
-		console.log(menu.path);
-		if(menu.menu){
-			$(menu.menu).each(function(i,submenu){
-				menus.push(submenu);
-				console.log(submenu.path);
-				submenu.parent = menu;
-			});
-			menus.push(menu.menu);
-			console.log(menu.menu.path);
-		}
-	});
-		
 	return hostJson;
 }
