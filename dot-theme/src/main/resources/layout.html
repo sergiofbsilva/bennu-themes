@@ -61,7 +61,7 @@
 			<div id="nav">
 				<ul class="nav nav-tabs">
 					{{#menu}}
-					<li>
+					<li {{#selected}}class="active"{{/selected}}>
 						<a href="{{contextPath}}/{{path}}" alt="{{#_mls}}description{{/_mls}}"><span>{{#_mls}}title{{/_mls}}</span></a>
 					</li>
 					{{/menu}}
@@ -80,7 +80,7 @@
 			{{/menu}}
 				{{#menu}}
 					{{#menu}}
-					<li>
+					<li {{#selected}}class="active"{{/selected}}>
 						<a href="{{contextPath}}/{{path}}" alt="{{#_mls}}description{{/_mls}}"><span>{{#_mls}}title{{/_mls}}</span></a>
 					</li>
 					{{/menu}}
@@ -106,5 +106,6 @@
 	</div>
 	
 </div>
+<script src="{{contextPath}}/themes/dot/js/handleFrag.js"></script>
 <script src="{{contextPath}}/themes/dot/js/login.js"></script>
 <script src="{{contextPath}}/themes/dot/js/language.js"></script>

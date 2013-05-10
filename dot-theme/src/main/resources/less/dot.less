@@ -105,6 +105,10 @@ body {
 	color: @subMenuFontHoverColor;
 }
 
+#subnav li.active * {
+	background-color: @subMenuBackgroundActiveColor;
+}
+
 #footer {
 	color: @footerFontColor;
 	text-align: center;
@@ -114,4 +118,9 @@ body {
 a {
 	color: @linkFontColor;
 	text-decoration: none;
+}
+
+#nav li.active a {
+		background-color: #eee;
+		color: black;
 }
