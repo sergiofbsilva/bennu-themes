@@ -1,5 +1,42 @@
+<style>
+</style>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+
 {{#casEnabled}}
 	<script data-fluid="false" id="ist-bar" src="https://barra.ist.utl.pt/site_media/static/js/barra.js"></script>
+{{/casEnabled}}
+{{^casEnabled}}
+	<section id="bar-ist-network">
+		<div style="margin: 0px 5%;">
+			<div class="row-fluid">
+				<div class="span6">
+					<a id="logo" href="http://ist.utl.pt" title="Homepage do IST">Instituto Superior <strong>Técnico</strong></a>
+				</div>
+				<div class="span6">
+					<div class="row">
+						{{^casEnabled}}
+						<div id="login" class="form-inline pull-right">
+						{{^logged}}
+							{{^casEnabled}}
+							<span>{{#_i18n}}username{{/_i18n}}: <input class="input-small" type="text" name="username" size="10"></span>
+							<span>Password: <input class="input-small" type="password" name="password" size="10"></span>
+							<button id='submit-login' class='btn btn-mini'>{{#_i18n}}login{{/_i18n}}</button>
+							{{/casEnabled}}
+							{{#casEnabled}}
+								<a href='{{loginUrl}}'>{{#_i18n}}login{{/_i18n}}</a>
+							{{/casEnabled}}
+						{{/logged}}
+						
+						{{#logged}}
+								{{username}}&nbsp;<button class='btn btn-mini' id='logout'>{{#_i18n}}logout{{/_i18n}}</button>
+						{{/logged}}
+						</div>
+						{{/casEnabled}}
+					</div>
+				</div>
+			</div>
+		</div>				
+	</section>
 {{/casEnabled}}
 <div style="margin: 10px 5%">
 	<div id="header" class="container-fluid">
@@ -16,30 +53,15 @@
 			</div>
 			<div class="span6">
 				<div class="row">
-					{{^casEnabled}}
-					<div id="login" class="form-inline pull-right">
-					{{^logged}}
-						{{^casEnabled}}
-						<span>{{#_i18n}}username{{/_i18n}}: <input class="input-small" type="text" name="username" size="10"></span>
-						<span>Password: <input class="input-small" type="password" name="password" size="10"></span>
-						<button id='submit-login' class='btn btn-mini'>{{#_i18n}}login{{/_i18n}}</button>
-						{{/casEnabled}}
-						{{#casEnabled}}
-							<a href='{{loginUrl}}'>{{#_i18n}}login{{/_i18n}}</a>
-						{{/casEnabled}}
-					{{/logged}}
-					
-					{{#logged}}
+				</div>
+				<div class="row">
+					<div class="pull-right">
+						{{#logged}}
 							{{#manager}}
-								<a href="{{contextPath}}/bennu-admin">{{#_i18n}}settings{{/_i18n}}&nbsp;|&nbsp;</a>
+								<a href="{{contextPath}}/bennu-admin">{{#_i18n}}settings{{/_i18n}}&nbsp;<i style="color: white; font-size:14px;" class="icon-cog"></i></a>
 							{{/manager}}
-							
-							{{username}}
-							<button class='btn btn-mini' id='logout'>{{#_i18n}}logout{{/_i18n}}</button>
-							
-					{{/logged}}
+						{{/logged}}
 					</div>
-					{{/casEnabled}}
 				</div>
 				<div class="row">
 					<div id="language" class="pull-right">
@@ -53,6 +75,7 @@
 					{{/locales}}
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
