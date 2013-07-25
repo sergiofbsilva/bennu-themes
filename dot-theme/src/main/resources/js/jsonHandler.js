@@ -1,21 +1,22 @@
 function jsonHandler(hostJson) {
+	
 	if (hostJson.name) {
 		hostJson.logged = true;
 	} else {
 		hostJson.logged = false;
 	}
 
-	$(hostJson.locales).each(function(i, e) {
-		if (e.tag === hostJson.locale.tag) {
-			e.selected = true;
+	$(hostJson.locales).each(function() {
+		if (this.tag === hostJson.locale.tag) {
+			this.selected = true;
 		} else {
-			e.selected = false;
+			this.selected = false;
 		}
 	});
 
 	hostJson.manager = false;
-	$(hostJson.groups).each(function(i, e) {
-		if (e["expression"] === "#managers") {
+	$(hostJson.groups).each(function() {
+		if (this["expression"] === "#managers") {
 			hostJson.manager = true;
 		}
 	});
@@ -23,54 +24,53 @@ function jsonHandler(hostJson) {
 	var path = location.href.replace(location.href.substring(0, location.href.indexOf(contextPath) + contextPath.length
 			+ 1), "");
 	
-	window.selectedMenu = null;
-
-	var selectMenu = function(parent, child, localPath) {
-		var selected = false;
-		
+	var selectedMenu = false;
+	
+	var resetMenu = function() {
+		var parent = this;
+		var child = parent.menu;
 		//deselect all childs
-		$(child).each(function(i, e) {
-			e.selected = false;
+		$(child).each(function() {
+			this.selected = false;
+			this.parentId = parent.id;
+			this.parent = parent;
 		});
+	};
+	
+	var tryToSelectParentMenu = function() {
 		
-		//select parent Menu
-		if (parent.path === localPath) {
-			parent.selected = true;
-			selected = parent;
+		if (this.path === path) {
+			this.selected = true;
+			selectedMenu = this;
 			return false;
 		}
 		
-		//if no parentMenu was selected and has child try to select one of the child.
+	};
+	
+	var tryToSelectChildMenu = function() {
+		var parent = this;
+		var child = parent.menu;
+		
+		//if no parentMenu was selected and has child try to select one of the childs.
 		//If founds one child selects the parentMenu too.
-		if (!selected && child) {
-			$(child).each(function(i, e) {
-				e.selected = e.path === path;
-				if (e.selected) {
-					selected = e;
+			$(child).each(function() {
+				this.selected = this.path === path;
+				if (this.selected) {
+					selectedMenu = this;
+					this.selected = true;
 					parent.selected = true;
 					return false;
 				}
 			});
-		}
-
-		if (selected) {
-			return selected;
-		}
-		
-		//if parent or child are not selected then reset parent child menus
-		//to prevent mustache from rendering the child menus of parent menu
-		parent.menu = [];
-		return false;
 	};
-
-	$(hostJson.menu).each(function(i, e) {
-		var menu = selectMenu(e, e.menu, path);
-		if (menu) {
-			window.selectedMenu = menu;
-			console.log("set menu has selected:" + menu.path);
-		}
-	});
 	
-	console.log(JSON.stringify(hostJson,null, '\t'));
+	$(hostJson.menu).each(resetMenu);
+	
+	$(hostJson.menu).each(tryToSelectParentMenu);
+	
+	if (!selectedMenu) {
+		$(hostJson.menu).each(tryToSelectChildMenu);
+	}
+	
 	return hostJson;
 }

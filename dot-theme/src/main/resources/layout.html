@@ -80,7 +80,7 @@
 			<div id="nav">
 				<ul class="nav nav-tabs">
 					{{#menu}}
-					<li {{#selected}}class="active"{{/selected}}>
+					<li class="menu {{#selected}}active{{/selected}}" menu="{{id}}">
 						<a href="{{contextPath}}/{{path}}" alt="{{#_mls}}description{{/_mls}}"><span>{{#_mls}}title{{/_mls}}</span></a>
 					</li>
 					{{/menu}}
@@ -89,26 +89,18 @@
 		</div>
 	</div>
 	
+	
 	<div class="row-fluid">
 		<div class="span12">
 			<div id="subnav">
 			{{#menu}}
+				<ul class="nav nav-pills {{^selected}}hide{{/selected}}" menu="{{id}}">
 					{{#menu}}
-				<ul class="nav nav-pills">
-					{{/menu}}
-			{{/menu}}
-				{{#menu}}
-					{{#menu}}
-					<li {{#selected}}class="active"{{/selected}}>
+					<li class="submenu {{#selected}}active{{/selected}}">
 						<a href="{{contextPath}}/{{path}}" alt="{{#_mls}}description{{/_mls}}"><span>{{#_mls}}title{{/_mls}}</span></a>
 					</li>
 					{{/menu}}
-				{{/menu}}
-				
-			{{#menu}}
-			  {{#menu}}	
 				</ul>
-			  {{/menu}}
 			{{/menu}}
 			</div>
 		</div>
